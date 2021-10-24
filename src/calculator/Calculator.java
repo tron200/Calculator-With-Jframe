@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
@@ -14,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 
 public class Calculator extends JFrame{
@@ -40,7 +42,7 @@ public class Calculator extends JFrame{
         JPanel row2 = new JPanel();
         JPanel row3 = new JPanel();
         JPanel row4 = new JPanel();
-        JTextArea screen = new JTextArea("hi");
+        JTextField screen = new JTextField("hi");
         
         
     public Calculator(){
@@ -59,12 +61,9 @@ public class Calculator extends JFrame{
         
         setLayout(new GridLayout(5, 1));
         screenContainer.setSize(500, 100);
-        screen.setPreferredSize(new Dimension(450,80));
-        screen.setMaximumSize(new Dimension(450,80));
-        screen.setLineWrap(true);
-        screen.setFont(new Font("Serif", Font.BOLD, 19));
-        screen.setColumns(2);
-        screenContainer.add(screen);
+        screen.setPreferredSize(new Dimension(415,90));
+        screen.setFont(new Font("Serif", Font.BOLD, 30));
+        screenContainer.add(screen); 
         add(screenContainer);
         BZero.setPreferredSize(new Dimension(100,75));
         BZero.setFont(new Font("Serif", Font.BOLD, 22));
