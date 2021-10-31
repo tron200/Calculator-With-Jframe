@@ -2,32 +2,15 @@ package calculator;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.beans.Expression;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.AncestorListener;
 
 public class Calculator extends JFrame {
 
@@ -113,225 +96,172 @@ public class Calculator extends JFrame {
         BClear.setPreferredSize(new Dimension(475, 80));
         screen.setPreferredSize(new Dimension(475, 80));
         screen.setLineWrap(true);
-        ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
         //Button's Events
-        BZero.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("0");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "0");
-                    putOperator = true;
+        BZero.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("0");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "0");
+                putOperator = true;
+            }
+        });
+        BOne.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("1");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "1");
+                putOperator = true;
+            }
+        });
+        BTwo.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("2");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "2");
+                putOperator = true;
+            }
+        });
+        BThree.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("3");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "3");
+                putOperator = true;
+            }
+        });
+        BFour.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("4");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "4");
+                putOperator = true;
+            }
+        });
+        BFive.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("5");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "5");
+                putOperator = true;
+            }
+        });
+        BSix.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("6");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "6");
+                putOperator = true;
+            }
+        });
+        BSeven.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("7");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "7");
+                putOperator = true;
+            }
+        });
+        BEight.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("8");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "8");
+                putOperator = true;
+            }
+        });
+        BNine.addActionListener((ActionEvent e) -> {
+            if(result){
+                screen.setText("9");
+                putOperator = true;
+                result = false;
+            }else{
+                screen.setText(screen.getText() + "9");
+                putOperator = true;
+            }
+        });
+        BPlus.addActionListener((ActionEvent e) -> {
+            String text = screen.getText();
+            if (!text.isEmpty()) {
+                if (evaluateExp.precedence(text.charAt(text.length() - 1)) != -1) {
+                    screen.setText(text.substring(0, text.length() - 1) + "+");
+                } else if (putOperator && !result) {
+                    screen.setText(text + "+");
                 }
             }
         });
-        BOne.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("1");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "1");
-                    putOperator = true;
+        BMines.addActionListener((ActionEvent e) -> {
+            String text = screen.getText();
+            if (!text.isEmpty()) {
+                if (evaluateExp.precedence(text.charAt(text.length() - 1)) != -1) {
+                    screen.setText(text.substring(0, text.length() - 1) + "-");
+                } else if (putOperator && !result) {
+                    screen.setText(text + "-");
                 }
             }
         });
-        BTwo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("2");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "2");
-                    putOperator = true;
+        BMulti.addActionListener((ActionEvent e) -> {
+            String text = screen.getText();
+            if (!text.isEmpty()) {
+                if (evaluateExp.precedence(text.charAt(text.length() - 1)) != -1) {
+                    screen.setText(text.substring(0, text.length() - 1) + "*");
+                } else if (putOperator && !result) {
+                    screen.setText(text + "*");
                 }
             }
         });
-        BThree.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("3");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "3");
-                    putOperator = true;
+        BDevide.addActionListener((ActionEvent e) -> {
+            String text = screen.getText();
+            if (!text.isEmpty()) {
+                if (evaluateExp.precedence(text.charAt(text.length() - 1)) != -1) {
+                    screen.setText(text.substring(0, text.length() - 1) + "/");
+                } else if (putOperator && !result) {
+                    screen.setText(text + "/");
                 }
             }
         });
-        BFour.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("4");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "4");
-                    putOperator = true;
-                }
+        BDot.addActionListener((ActionEvent e) -> {
+            String s = screen.getText();
+            if (!s.isEmpty() && putOperator && !result) {
+                screen.setText(screen.getText() + ".");
+                putOperator = false;
             }
         });
-        BFive.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("5");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "5");
-                    putOperator = true;
-                }
-            }
-        });
-        BSix.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("6");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "6");
-                    putOperator = true;
-                }
-            }
-        });
-        BSeven.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("7");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "7");
-                    putOperator = true;
-                }
-            }
-        });
-        BEight.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("8");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "8");
-                    putOperator = true;
-                }
-            }
-        });
-        BNine.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(result){
-                    screen.setText("9");
-                    putOperator = true;
-                    result = false;
-                }else{
-                    screen.setText(screen.getText() + "9");
-                    putOperator = true;
-                }
-            }
-        });
-        BPlus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String text = screen.getText();
-                if (!text.isEmpty()) {
-                    if (evaluateExp.precedence(text.charAt(text.length() - 1)) != -1) {
-                        screen.setText(text.substring(0, text.length() - 1) + "+");
-                    } else if (putOperator && !result) {
-                        screen.setText(text + "+");
-                    }
-                }
-            }
-        });
-        BMines.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String text = screen.getText();
-                if (!text.isEmpty()) {
-                    if (evaluateExp.precedence(text.charAt(text.length() - 1)) != -1) {
-                        screen.setText(text.substring(0, text.length() - 1) + "-");
-                    } else if (putOperator && !result) {
-                        screen.setText(text + "-");
-                    }
-                }
-            }
-        });
-        BMulti.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String text = screen.getText();
-                if (!text.isEmpty()) {
-                    if (evaluateExp.precedence(text.charAt(text.length() - 1)) != -1) {
-                        screen.setText(text.substring(0, text.length() - 1) + "*");
-                    } else if (putOperator && !result) {
-                        screen.setText(text + "*");
-                    }
-                }
-            }
-        });
-        BDevide.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String text = screen.getText();
-                if (!text.isEmpty()) {
-                    if (evaluateExp.precedence(text.charAt(text.length() - 1)) != -1) {
-                        screen.setText(text.substring(0, text.length() - 1) + "/");
-                    } else if (putOperator && !result) {
-                        screen.setText(text + "/");
-                    }
-                }
-            }
-        });
-        BDot.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = screen.getText();
-                if (!s.isEmpty() && putOperator && !result) {
-                    screen.setText(screen.getText() + ".");
-                    putOperator = false;
-                }
-            }
-        });
-        BEqual.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                String infix = screen.getText().toString();
+        BEqual.addActionListener((ActionEvent e) -> {
+            //                String infix = screen.getText().toString();
 //                String result = evaluateExp(infix);
-                // if not empty
-                String text = screen.getText();
-                try{
-                    screen.setText(Integer.parseInt(text)+"");
-                    result = true;
-                }catch(NumberFormatException err){
-                    if (!text.isEmpty() && evaluateExp.precedence(text.charAt(text.length() - 1)) == -1 && !text.equals("Syntax Error")) {
-                    screen.setText(evaluateExp.evaluateExp(text));
-                    result = true;
-                }
-                }
-            }
+// if not empty
+String text = screen.getText();
+try{
+    screen.setText(Integer.parseInt(text)+"");
+    result = true;
+}catch(NumberFormatException err){
+    if (!text.isEmpty() && evaluateExp.precedence(text.charAt(text.length() - 1)) == -1 && !text.equals("Syntax Error")) {
+        screen.setText(evaluateExp.evaluateExp(text));
+        result = true;
+    }
+}
         });
-        BClear.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                screen.setText("");
-            }
+        BClear.addActionListener((ActionEvent e) -> {
+            screen.setText("");
         });
 
         //setLayout(new GridLayout(0, 1));
